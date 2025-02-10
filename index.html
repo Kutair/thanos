@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ПГИА3 - Игра в кальмара - Images & Copyright</title>
   <style>
     body {
@@ -16,6 +18,7 @@
       background-image: url("https://pluggedin.ru/images/upload/1735381848.jpeg");
       background-size: cover;
       background-position: center;
+      background-attachment: fixed; /* Фиксированный фон для улучшения производительности */
     }
 
     body::before {
@@ -55,6 +58,17 @@
       font-size: 1.2em;
       text-shadow: 2px 2px 4px #000;
     }
+
+    /* Медиа-запрос для мобильных устройств */
+    @media (max-width: 768px) {
+      .random-image {
+        animation-duration: 7s; /* Замедлить анимацию на мобильных */
+      }
+
+      #copyright {
+        font-size: 1em; /* Уменьшить шрифт копирайта на мобильных */
+      }
+    }
   </style>
 </head>
 <body>
@@ -84,7 +98,7 @@
     img.src = images[Math.floor(Math.random() * images.length)];
     img.classList.add('random-image');
 
-    const width = Math.floor(Math.random() * 200) + 50;
+    const width = Math.floor(Math.random() * 150) + 40; // Уменьшить максимальный размер
     const height = width;
     img.width = width;
     img.height = height;
@@ -103,9 +117,9 @@
     document.body.appendChild(img);
   }
 
-  setInterval(addRandomImage, 50);
+  setInterval(addRandomImage, 100); // Увеличить интервал появления
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 30; i++) { // Уменьшить начальное количество
     addRandomImage();
   }
 
