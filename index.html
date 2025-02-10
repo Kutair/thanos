@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ПГИА3 - Игра в кальмара - Images & Copyright</title>
+  <style>
+    body {
+      background-color: #000;
+      overflow: hidden;
+      margin: 0;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      min-height: 100vh;
+
+      /* Постоянный фон (вторая картинка затемненная) */
+      background-image: url("https://pluggedin.ru/images/upload/1735381848.jpeg");
+      background-size: cover;
+      background-position: center;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); /* Сильное затемнение */
+      z-index: -1;
+    }
+
+    .random-image {
+      position: absolute;
+      animation: moveImage 5s linear infinite;
+    }
+
+    @keyframes moveImage {
+      0% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+      }
+      50% {
+        transform: translate(calc(100vw - var(--image-width)), calc(100vh - var(--image-height))) rotate(180deg) scale(1.2);
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg) scale(1);
+      }
+    }
+
+    #copyright {
+      position: fixed;
+      bottom: 10px;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      font-size: 1.2em;
+      text-shadow: 2px 2px 4px #000;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  const images = [
+    "https://static.wikia.nocookie.net/squid-game/images/d/da/Thanos_Player_Picture.webp/revision/latest?cb=20250109150330&path-prefix=ru",
+    "https://www.soyuz.ru/public/uploads/files/2/7641333/20250113113350fe74e93489.jpg",
+    "https://static.kinoafisha.info/upload/articles/588287631337.jpg",
+    "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_6770174651af1b649f762793_67701907b96b121a4ae4aefa/scale_1200",
+    "https://img.championat.com/c/900x900/news/big/b/w/ya-blagodaren-vam-rezhissyor-igry-v-kalmara-o-lyubimchike-fanatov-po-imeni-tanos_1736749360388795536.jpg",
+    "https://sun1-55.userapi.com/s/v1/ig2/188fBo2DYz-bijtbsQmcJ3tRmQneNbCANHvDk62SpjwFZg-vlZllOy5NVTte9lsSqX_Akll1u-RPo0l0FP8Gdt6U.jpg?quality=95&as=32x29,48x44,72x66,108x99,160x146,240x219,360x329,480x439,540x493,640x585,720x658,766x700&from=bu&u=fULjW2fg5tKlIAp9cILSOG49Ky10Edo3NwIXsH9mNnk&cs=766x700",
+    "https://basket-19.wbbasket.ru/vol3118/part311804/311804979/images/c516x688/1.webp",
+    "https://static.kinoafisha.info/k/articles/610/upload/editor/articles/849413509665.jpg",
+    "https://i.pinimg.com/236x/04/5b/6b/045b6b899d8f9af31eb284dda123346c.jpg",
+    "https://static.kinoafisha.info/k/articles/610/upload/articles/263377342845.jpg",
+    "https://basket-19.wbbasket.ru/vol3131/part313128/313128064/images/c516x688/1.webp",
+    "https://basket-19.wbbasket.ru/vol3105/part310501/310501144/images/c516x688/1.webp",
+    "https://www.soyuz.ru/public/uploads/files/2/7641825/202501301410358f83d92799.jpg",
+    "https://img.wattpad.com/cover/388261770-256-k930837.jpg",
+    "https://www.kinonews.ru/insimgs/2025/newsimg/big/newsimg131739.webp",
+    "https://static.kinoafisha.info/k/articles/1200/upload/articles/927857092086.jpg"
+  ];
+
+  function addRandomImage() {
+    const img = document.createElement('img');
+    img.src = images[Math.floor(Math.random() * images.length)];
+    img.classList.add('random-image');
+
+    const width = Math.floor(Math.random() * 200) + 50;
+    const height = width;
+    img.width = width;
+    img.height = height;
+
+    img.style.setProperty('--image-width', width + 'px');
+    img.style.setProperty('--image-height', height + 'px');
+
+    const x = Math.random() * (window.innerWidth - width);
+    const y = Math.random() * (window.innerHeight - height);
+    const rotation = Math.random() * 360;
+
+    img.style.left = x + 'px';
+    img.style.top = y + 'px';
+    img.style.transform = `rotate(${rotation}deg)`;
+
+    document.body.appendChild(img);
+  }
+
+  setInterval(addRandomImage, 50);
+
+  for (let i = 0; i < 50; i++) {
+    addRandomImage();
+  }
+
+  document.body.innerHTML += '<div id="copyright">© Павел Юрьевич ПГИА2</div>';
+</script>
+
+</body>
+</html>
