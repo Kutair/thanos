@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ПГИА3 - Игра в кальмара - Images & Copyright</title>
   <style>
     body {
@@ -35,6 +35,9 @@
     .random-image {
       position: absolute;
       animation: moveImage 5s linear infinite;
+      /* Добавлено ограничение перемещения */
+      max-width: 100%;
+      max-height: 100%;
     }
 
     @keyframes moveImage {
@@ -106,8 +109,17 @@
     img.style.setProperty('--image-width', width + 'px');
     img.style.setProperty('--image-height', height + 'px');
 
-    const x = Math.random() * (window.innerWidth - width);
-    const y = Math.random() * (window.innerHeight - height);
+    // Получаем размеры body
+    const bodyWidth = document.body.clientWidth;
+    const bodyHeight = document.body.clientHeight;
+
+    let x = Math.random() * (bodyWidth - width);
+    let y = Math.random() * (bodyHeight - height);
+
+    // Ограничение перемещения
+    x = Math.max(0, Math.min(x, bodyWidth - width));
+    y = Math.max(0, Math.min(y, bodyHeight - height));
+
     const rotation = Math.random() * 360;
 
     img.style.left = x + 'px';
